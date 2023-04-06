@@ -1,0 +1,73 @@
+ *1.2.13
+-fixed volume not working in non-drum pattern editor because, my bad.
+-note volume should only be changeable when over a note.
+-decreased tap detection sensitivity a bit.
+-new folders can be created in file browser.
+
+ *1.2.12
+-volume icon in the lower left is now clickable:
+	Short tap changes note/track volume.
+	Long press changes row volume in drumtrack editor.
+-fixed bug in track arranger that caused track numbers of 10 and over to be drawn partially under the tracks.
+-removed useless/confusing 'OK' command in file browser.
+-added tap and long press detection:
+	In track arranger: short tap selects, long press edits pattern.
+	In pattern editor: short tap places note, long press changes its length.
+-renamed 'riff' to 'pattern' and 'pat. '.
+
+ *1.2.11
+-prevented virtual keypad from showing onscreen on Nokia and a few other touchphones.
+-added rudimentary touchscreen support. Not pretty, but at least it's usable on touchphones lacking buttons.
+-fixed orientation bug that blanked display in riff editor.
+
+ *1.2.10
+-fixed a nasty bug that prevented going back into the sequencer after accessing About/Songs screen.
+-closed a few open RecordStores that were causing trouble.
+-filebrowser remembers last position untill application is exited.
+-added icons to the filebrowser.
+-merged Vibe, VibeTools and RMSbackup into one single application.
+-RMS Backup now only loads and saves informations about the songs.
+
+ *1.2.09
+-changed the names of the transposition functions back to Note/Octave up/down.  
+
+ *1.2.08
+-added update check in about screen.
+-fixed update function to tell user if something goes wrong, instead of just saying that no update was found.
+-changed a couple of menu strings. 'File'->'Main menu' and 'Memory stat'->'Memory usage'.
+
+ *1.2.07
+-removed demo limitations
+-removed Online menu, for now
+-fixed bug where deleting all the songs and attempting to save current one would cause an error
+-added a little about screen
+-attempting to play sound on a Nokia phone on silent profile caused a vague MediaException error. Changed that error to something more readable.
+
+ *vibe_F06          (1.2.06)
+-changed Note up/down to Note++/Note-- to make it easier to read
+-readded octave transposition as Octave++/Octave--
+
+ *vibe_F05          (1.2.05)
+-readded demo limitation due to trouble on the N70
+-menu icon bug fixed
+-ability to import/export songs in native format and midi(export only). Might break RMS so I recommend backups
+-three apps are now in the same .jar
+
+ *Vibe_F04          (1.2.04)
+-integrated mod version in MANFEST.MF
+-transposing notes instead of whole octaves
+-moved 'note up/down' closer to beginning of menu
+-(hopefully) removed demo limitations
+-bug: icons don't show up in main menu when you start app
+
+ *Vibe_F03
+-prefixed numbers to the apps so they order properly on SE phones
+-changed a few strings in the RMS backuper utility
+
+ *Vibe_F02
+-two apps are now in the same .jar
+-ability to import/export the RMS(now you can share songs with your friends :3 )
+
+ *Vibe_F01
+-BPM now goes up to 500
+-long title(up to 99 letters; like a short description)

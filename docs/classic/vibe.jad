@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+MicroEdition-Configuration: CLDC-1.0
+MIDlet-Name: Vibe
+gatewayPort: 8205
+Created-By: 1.5.0_03 (Sun Microsystems Inc.)
+MIDlet-Vendor: Digitime Computer Systems
+MIDlet-1: Vibe,images/loudspeaker.png,com.digitime.vibe.midlet.SeqMidlet
+gatewayHost: 80.177.223.146
+MIDlet-Version: 1.1.33
+MicroEdition-Profile: MIDP-2.0
+MIDlet-Jar-Size: 70164
+MIDlet-Jar-URL: vibe.jar
+Nokia-MIDlet-Category: Game

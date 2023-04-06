@@ -1,0 +1,36 @@
+DONE:
+*Get update function running.
+*Have RMS Backup only read and write from 'seqdb1.rms'. This applies both to the RMS and backup files from old versions.
+*Fix VibeTools refusing to import songs when the RMS is empty.
+*Bring RMS Backup and VibeTools under the same roof and integrate them into the 'Open' menu(perhaps call it 'Songs' instead).
+*Add rudimentary drag'n'jab support to make this app usable on touchphones.
+*Fix screen orientation bugs.
+
+Yus:
+*Find away to have both setFullScreenMode(true) and working softkey menus.
+*Fix aspect ratio of things after doing the above.
+*Add file operations in VibeTools.
+*Add preview function to VibeTools so you don't have to import the song to hear it.
+*Clean up the fucking mess in VibeTools class.
+*Clean up menus in VibeTools.
+*Add confirmation dialogs in VibeTools.
+*Have Vibe check if anymore space is available in RMS before writing. See getRecordSize(int recordID) and getSizeAvailable().
+*Prevent changed song order from causing havoc when saving again.
+
+Likely:
+*Show current version and updated version in update screen.
+*Riff shift(horizontal transposition).
+
+Less likely:
+*Show feature news when update when update is found.
+*Add compression functions for general use(gzip suggested).
+*Song compression inside RMS.
+*Some theming would be nice.
+*Add full touchscreen support.
+*Bluetooth/IR song sending and receiving.
+*Pack transposition functions into one submenu.
+
+Far out:
+*Reverse engineer the server from the Vibe client.
+*Fix the Online menus in the modded version after doing the previous.
+*Fuck reverse engineering the damned netcode, build my own from scratch.
