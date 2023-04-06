@@ -54,7 +54,6 @@ public final class Menu implements CommandListener, Runnable {
     private Image imgSpeaker;
     private Image imgAbout;
     private Image imgUpdate;
-    private OnlineBuddyForm localOnlineBuddyForm;
     //Sure beats lugging strings around, eh??
     private static int nullhandle = -1;
     //menu items
