@@ -18,9 +18,9 @@ import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.List;
 import javax.microedition.midlet.MIDlet;
 //import javax.microedition.lcdui.List;
-import cust.ListV2;
 
 public final class Menu implements CommandListener, Runnable {
 
@@ -37,7 +37,7 @@ public final class Menu implements CommandListener, Runnable {
     private OnlineArray2Http localOnlineArray2Http;
     private Song localSong;
     //private List menuList;
-    private ListV2 menuList;
+    private List menuList;
     private int currentMenu;
     private int p;
     private int q;
@@ -110,15 +110,15 @@ public final class Menu implements CommandListener, Runnable {
 
     public final void menuListAppend() {
         if (currentMenu == mMain) {
-            menuList = new ListV2("File menu", 3);
-            menuList.append("New", imgDocMus, hNew); //cust.langParser.stringGET(3)
-            menuList.append("Songs", imgFoldMus, hOpen);
+            menuList = new List("File menu", 3);
+            menuList.append("New", imgDocMus); //cust.langParser.stringGET(3)
+            menuList.append("Songs", imgFoldMus);
             if (localSong != null) {
-                menuList.append("Save " + localSong.songName, imgFloppy, hSave);
+                menuList.append("Save " + localSong.songName, imgFloppy);
             }
             //menuList.append("Online", imgEarthMus, hOnline);
-            menuList.append("About", imgAbout, hAbout);
-            menuList.append("Exit vibe", imgExit, hExit);
+            menuList.append("About", imgAbout);
+            menuList.append("Exit vibe", imgExit);
         }
 
         if (localSong != null || currentMenu != mMain) {
@@ -131,13 +131,13 @@ public final class Menu implements CommandListener, Runnable {
 
     public final void commandAction(Command com, Displayable uselessVar) {
         int selectedIndex = menuList.getSelectedIndex();
-        int selectedHandle = menuList.getSelectedHandle();
+        Image selectedImage = menuList.getImage(selectedIndex);
         if (currentMenu == mMain) {
             if ("".equals(com.getLabel())) {
-                if (selectedHandle == hNew) {
+                if (selectedImage == imgDocMus) { //new
                     localSeqMidlet.songNew();
                 }
-                if (selectedHandle == hOpen) {
+                if (selectedImage == imgFoldMus) { //Open
                     localSeqMidlet.vibeTools();
                     /*
                      currentMenu = mLoadLocal;
@@ -146,13 +146,13 @@ public final class Menu implements CommandListener, Runnable {
                      return;
                      */
                 }
-                if (selectedHandle == hSave) {
+                if (selectedImage == imgFloppy) { //save
                     localSeqMidlet.songSave();
                 }
-                if (selectedHandle == hAbout) {
+                if (selectedImage == imgAbout) { //about
                     localSeqMidlet.aboutScreen();
                 }
-                if (selectedHandle == hExit) {
+                if (selectedImage == imgExit) { //exit
                     localSeqMidlet.appExit();
                 }
             } else if (com == comBack) {
