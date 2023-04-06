@@ -209,15 +209,6 @@ public final class Menu implements CommandListener, Runnable {
         menuListAppend();
     }
 
-    public final void setOnlineMenu() {
-        if (currentMenu == m1) {
-            currentMenu = m4;
-            menuListAppend();
-        } else {
-            (new Thread(this)).start();
-        }
-    }
-
     private boolean hasAnySongs() {
         return defPack.RecStoreHandler.totalSongNumGET() > 0;
     }
