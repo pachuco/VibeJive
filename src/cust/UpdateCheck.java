@@ -134,6 +134,6 @@ public final class UpdateCheck implements CommandListener {
    
    private static String updateUrlGET(SeqMidlet varMID) {
       String varString;
-      return (varString = varMID.getAppProperty("updateURL")) != null && varString.startsWith("http:")?varString.substring(0, varString.length() - 1) + "d":"http://vibejive.net:8205/apps/vibe.jad";
+      return (varString = varMID.getAppProperty("UpdateURL"));
    }
 }
