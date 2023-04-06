@@ -4,8 +4,6 @@
  */
 package defPack;
 
-import service.Category;
-import service.OnlineSong;
 import midlet.SeqMidlet;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -20,7 +18,6 @@ import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.List;
 import javax.microedition.midlet.MIDlet;
-//import javax.microedition.lcdui.List;
 
 public final class Menu implements CommandListener, Runnable {
 
@@ -34,7 +31,6 @@ public final class Menu implements CommandListener, Runnable {
     private static Vector g;
     private Display localDisplay;
     private SeqMidlet localSeqMidlet;
-    private OnlineArray2Http localOnlineArray2Http;
     private Song localSong;
     //private List menuList;
     private List menuList;
@@ -83,10 +79,9 @@ public final class Menu implements CommandListener, Runnable {
     private static int m10 = 10;
     private static int m11 = 11;
 
-    public Menu(SeqMidlet varSeqMid, Song var4, OnlineArray2Http var3) {
+    public Menu(SeqMidlet varSeqMid, Song var4) {
         localSeqMidlet = varSeqMid;
         localDisplay = Display.getDisplay(localSeqMidlet);
-        localOnlineArray2Http = var3;
         localSong = var4;
 
         currentMenu = mMain;
@@ -169,137 +164,7 @@ public final class Menu implements CommandListener, Runnable {
     }
 
     public final void run() {
-
-        try {
-            int var1 = (int) defPack.RecStoreHandler.getLoginInfo()[0];
-            int var12;
-            if (currentMenu == m6) {
-                new LoadScreen("Fetching categories", localDisplay);
-                var12 = -1;
-                if (s.size() > 0) {
-                    var12 = ((Integer) s.lastElement()).intValue();
-                }
-
-                if (p == 0) {
-                    g = localOnlineArray2Http.b(var12, var1);
-                } else {
-                    t = localOnlineArray2Http.a(var12, q, var1);
-                    if (t.size() == 0) {
-                        defPack.ErrorDisplay.info("Sorry, there is nothing available for download.", menuList);
-                        currentMenu = m5;
-                        return;
-                    }
-                }
-
-                menuListAppend();
-                return;
-            }
-
-            int var5;
-            int var7;
-            byte[] var8;
-            if (currentMenu == m7) {
-                if (p != 0) {
-                    new LoadScreen("Fetching Songs", localDisplay);
-                    Integer var18 = (Integer) s.lastElement();
-                    songTitleList = localOnlineArray2Http.a(var18.intValue(), q, var1, x, 10);
-                    menuListAppend();
-                    return;
-                }
-
-                byte[] var16 = defPack.RecStoreHandler.a(localSong);
-                LoadScreen var15 = new LoadScreen("Uploading song", localDisplay, var16.length / r + 1);
-                Integer var17 = (Integer) s.lastElement();
-                var5 = var16.length;
-                int var19 = 0;
-
-                while (var5 > 0) {
-                    var8 = new byte[var7 = Math.min(r, var5)];
-                    System.arraycopy(var16, var16.length - var5, var8, 0, var7);
-                    localOnlineArray2Http.a(var17.intValue(), q, localSong.songName, var8, var19 == 0, var1);
-                    var5 -= var7;
-                    ++var19;
-                    var15.setValue(var19);
-                }
-
-                localSeqMidlet.songSave();
-                return;
-            }
-
-            OnlineSong var13;
-            if (currentMenu == m8) {
-                var12 = menuList.getSelectedIndex();
-                if (x > 0) {
-                    --var12;
-                }
-
-                var13 = (OnlineSong) songTitleList.elementAt(var12);
-                LoadScreen var14 = new LoadScreen("Downloading song", localDisplay, var13.c() / r + 1);
-                byte[] var6 = new byte[var5 = var13.c()];
-                var7 = 0;
-
-                while (var5 > 0) {
-                    System.arraycopy(var8 = localOnlineArray2Http.a(var13.a(), r, var7++, var1), 0, var6, var13.c() - var5, var8.length);
-                    var5 -= var8.length;
-                    var14.setValue(var7);
-                }
-
-                ByteArrayInputStream var20 = new ByteArrayInputStream(var6);
-                DataInputStream var9 = new DataInputStream(var20);
-                Song var10 = new Song(var9);
-                var9.close();
-                localSeqMidlet.songLoad(var10);
-                return;
-            }
-
-            if (currentMenu == m10) {
-                var12 = menuList.getSelectedIndex();
-                if (x > 0) {
-                    --var12;
-                }
-
-                var13 = (OnlineSong) songTitleList.elementAt(var12);
-                new LoadScreen("Exporting to phone", localDisplay);
-                String var4 = localOnlineArray2Http.a(var13.a(), var1);
-                localSeqMidlet.a(var4);
-                return;
-            }
-
-            if (currentMenu == m11) {
-                new LoadScreen("Fetching chart", localDisplay);
-                songTitleList = localOnlineArray2Http.c(var1);
-                menuListAppend();
-                return;
-            }
-
-            if (currentMenu == m9) {
-                new LoadScreen("Updating buddies", localDisplay);
-                String var2;
-                Vector var3;
-                if (p == 3) {
-                    if ((var2 = localOnlineArray2Http.a(w, var1)) != null) {
-                        (var3 = defPack.RecStoreHandler.BuddyListGET()).addElement(var2);
-                        defPack.RecStoreHandler.a(var3);
-                        menuListAppend();
-                        return;
-                    }
-
-                    defPack.ErrorDisplay.info("Buddy name not recognised. Please try again.", localOnlineBuddyForm.a);
-                    return;
-                }
-
-                if (p == 2) {
-                    var2 = localOnlineArray2Http.b(w, var1);
-                    (var3 = defPack.RecStoreHandler.BuddyListGET()).removeElement(var2);
-                    defPack.RecStoreHandler.a(var3);
-                    menuListAppend();
-                    return;
-                }
-            }
-        } catch (Throwable var11) {
-            //user expired
-            ;
-        }
+        //online functionality
     }
 
     public final void b() {

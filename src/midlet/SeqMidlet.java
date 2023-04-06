@@ -26,7 +26,6 @@ public class SeqMidlet extends MIDlet implements Runnable {
    private defPack.SeqArranger localSeqArranger;
    private Display localDisplay = Display.getDisplay(this);
    private Displayable localDisplayable;
-   private defPack.OnlineArray2Http localOnlineArray2Http;
    private FS squirrelAway;
 
    public SeqMidlet() {
@@ -39,53 +38,6 @@ public class SeqMidlet extends MIDlet implements Runnable {
       defPack.Channel var2;
       (var2 = new defPack.Channel("")).a(9);
       localSong.b(var2);
-   }
-
-   private void h() {
-      try {
-         String var1 = getAppProperty("gatewayHost");
-         String var2 = getAppProperty("gatewayPort");
-         String var10001;
-         SeqMidlet varSeqMidlet;
-         int var10002;
-         if(var1 != null) {
-            varSeqMidlet = this;
-            var10001 = var1;
-            var10002 = Integer.parseInt(var2);
-         } else {
-            varSeqMidlet = this;
-            var10001 = "127.0.0.1";
-            var10002 = 8205;
-         }
-
-         varSeqMidlet.localOnlineArray2Http = defPack._OnlineArrayThingie.a(var10001, var10002);
-         localMidiPlayer = new defPack.MidiPlayer();
-         localMidiPlayer.a(false);
-         localSeqArranger = new defPack.SeqArranger(localDisplay, this, localMidiPlayer);
-         boolean var3 = false;
-         long[] var4;
-         if((var4 = defPack.RecStoreHandler.getLoginInfo()) == null) {
-            defPack.RecStoreHandler.a(-1, 31536000000L, System.currentTimeMillis());
-         } else {
-            new Date(var4[1] + var4[2]);
-            long var6;
-            if((var6 = System.currentTimeMillis()) < var4[2]) {
-               var4[2] = var6;
-            }
-
-            var4[1] -= var6 - var4[2];
-            defPack.RecStoreHandler.a((int)var4[0], var4[1], System.currentTimeMillis());
-            //expiry date check
-            //if(var4[1] < 0L) {
-            //   port = true;
-            //}
-         }
-
-         mainMenu(false, true);
-      } catch (Throwable var8) {
-         var8.printStackTrace();
-         defPack.ErrorDisplay.error(var8, localSeqArranger);
-      }
    }
 
    private void memStatGET() {
@@ -119,7 +71,10 @@ public class SeqMidlet extends MIDlet implements Runnable {
    }
 
    public final void run() {
-      h();
+      localMidiPlayer = new defPack.MidiPlayer();
+      localMidiPlayer.a(false);
+      localSeqArranger = new defPack.SeqArranger(localDisplay, this, localMidiPlayer);
+      mainMenu(false, true);
    }
 
    public final void pauseApp() {
@@ -282,7 +237,7 @@ public class SeqMidlet extends MIDlet implements Runnable {
       if(getsDisplay){
           localDisplayable = localDisplay.getCurrent();
       }
-      defPack.Menu menu = new defPack.Menu(this, localSong, localOnlineArray2Http);
+      defPack.Menu menu = new defPack.Menu(this, localSong);
       if(!notListsMenu) {
          menu.menuListAppend();
       }
