@@ -1,3 +1,10 @@
+ *1.2.16
+-Emergency release.
+-Remove custom lcdui List class. Menu now works correctly on a bunch of emulators.
+
+ *1.2.14, 1.2.15
+-I forgets, lol.
+
  *1.2.13
 -fixed volume not working in non-drum pattern editor because, my bad.
 -note volume should only be changeable when over a note.
