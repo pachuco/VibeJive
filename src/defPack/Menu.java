@@ -127,7 +127,9 @@ public final class Menu implements CommandListener, Runnable {
         int selectedIndex = menuList.getSelectedIndex();
         Image selectedImage = menuList.getImage(selectedIndex);
         if (currentMenu == mMain) {
-            if ("".equals(com.getLabel())) {
+            if (com == comBack) {
+                localSeqMidlet.setFocus();
+            } else {
                 if (selectedImage == imgDocMus) { //new
                     localSeqMidlet.songNew();
                 }
@@ -149,8 +151,6 @@ public final class Menu implements CommandListener, Runnable {
                 if (selectedImage == imgExit) { //exit
                     localSeqMidlet.appExit();
                 }
-            } else if (com == comBack) {
-                localSeqMidlet.setFocus();
             }
         }
 
