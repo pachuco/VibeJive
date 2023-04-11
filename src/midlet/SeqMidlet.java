@@ -65,7 +65,7 @@ public class SeqMidlet extends MIDlet implements Runnable {
          localDisplay.setCurrent(localDisplayable);
          localDisplayable = null;
       } else {
-         new defPack.LoadScreen("Initialising", localDisplay);
+         //new defPack.LoadScreen("Initialising", localDisplay);
          (new Thread(this)).start();
       }
    }
